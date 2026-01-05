@@ -1,3 +1,5 @@
+//TODO: implement a callback to initialize itens on push and pushArray
+
 const GioArenaImpl = @import("src/gio_arena_impl.zig");
 
 pub const GioArena = GioArenaImpl.GioArena;
