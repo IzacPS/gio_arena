@@ -574,7 +574,7 @@ test "NoChainFlag" {
 
     _ = try arena.pushRaw(kb(900), 16, false);
     const result = arena.pushRaw(kb(200), 16, false);
-    try testing.expectError(error.CapacityExceded, result);
+    try testing.expectError(.CapacityExceded, result);
 }
 
 test "SmokeTest" {
@@ -600,7 +600,7 @@ test "AllocationExactBoundaryNoChainShouldFail" {
 
     _ = try arena.pushRaw(kb(64) - arena_header_size, 8, false);
     const result = arena.pushRaw(1, 8, false);
-    try testing.expectError(error.CapacityExceded, result);
+    try testing.expectError(.CapacityExceded, result);
 }
 
 test "NestedTemporaryScopes" {
@@ -667,7 +667,7 @@ test "NoChainBigAligned" {
     defer arena.deinit();
 
     const result = arena.pushRaw(mb(2), 64, false);
-    try testing.expectError(error.CapacityExceded, result);
+    try testing.expectError(.CapacityExceded, result);
 }
 
 test "InvalidAlignment" {
@@ -678,7 +678,7 @@ test "InvalidAlignment" {
     });
     defer arena.deinit();
 
-    try testing.expectError(error.InvalidAlignment, arena.pushRaw(16, 3, false));
+    try testing.expectError(.InvalidAlignment, arena.pushRaw(16, 3, false));
 }
 
 test "PopMoreThanUsedClamps" {
